@@ -1,4 +1,4 @@
-const {intializeDatabase} = require('./db/db.connect');
+const {initializeDatabase} = require('./db/db.connect');
 const Hotel = require('./models/hotel.models');
 const express = require('express')
 const app = express();
@@ -15,7 +15,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 
-intializeDatabase();
+initializeDatabase();
 
 // const newHotel = {
 //   name: "Sunset Resort",
