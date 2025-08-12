@@ -88,6 +88,7 @@ const readAllHotels = async() =>{
     try{
         const allHotels = await Hotel.find();
         console.log(allHotels);
+        return allHotels
         
     }
     catch(error){
@@ -124,6 +125,7 @@ const readHotelByName = async (HotelName) =>{
         const HotelByName = await Hotel.findOne({name: HotelName});
 
         console.log(HotelByName);
+        return HotelByName;
         
     }
     catch(error){
