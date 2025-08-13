@@ -11,6 +11,11 @@ const mongouri = process.env.MONGODB
 // here process.env already has connection string where MONGODB  is the key and value has the connection string
 
 
+let cached = global.mongoose;
+if(!cached) {
+  cached = global.mongoose = { conn: null, promise: null};
+}
+
 const initialiseDatabase = async () => {
   if(cached.conn) return cached.conn;
   if(!cached.promise) {

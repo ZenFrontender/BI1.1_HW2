@@ -1,4 +1,4 @@
-const {initializeDatabase} = require('./db/db.connect');
+const {initialiseDatabase} = require('./db/db.connect');
 const Hotel = require('./models/hotel.models');
 const express = require('express')
 const app = express();
@@ -17,7 +17,7 @@ app.use(express.json());
 const PORT = 3000; 
 
 const initDb = async () =>{
-    await initializeDatabase();
+    await initialiseDatabase();
     app.listen(PORT,()=>{
     console.log("Application is up and running and listening at port", PORT);
     
