@@ -15,7 +15,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 
-initializeDatabase();
+await initializeDatabase();
 
 // const newHotel = {
 //   name: "Sunset Resort",
