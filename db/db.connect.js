@@ -11,15 +11,19 @@ const mongouri = process.env.MONGODB
 // here process.env already has connection string where MONGODB  is the key and value has the connection string
 
 
-const initializeDatabase = async () =>{
-    await mongoose.connect(mongouri).then(()=>{
-        console.log("Connected to database");
-        
+const initialiseDatabase = async () => {
+  if(cached.conn) return cached.conn;
+  if(!cached.promise) {
+    cached.promise = mongoose.connect(mongouri, {
+      bufferCommands: false,
+    }).then((mongoose) => {
+      console.log("MongoDB Connected Successfully.");
+      return mongoose;
     })
-    .catch((error)=>{
-        console.log("An error has occurred while connecting to the database",error);
-        
-    })
-}
+    .catch((err) => console.log("Error Connecting Database:", err));
+  }
+  cached.conn = await cached.promise;
+  return cached.conn;
+};
 
-module.exports = {initializeDatabase};
+module.exports = { initialiseDatabase };

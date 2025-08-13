@@ -14,8 +14,18 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 
+const PORT = 3000; 
 
-initializeDatabase();
+const initDb = async () =>{
+    await initializeDatabase();
+    app.listen(PORT,()=>{
+    console.log("Application is up and running and listening at port", PORT);
+    
+})
+
+}
+
+initDb();
 
 // const newHotel = {
 //   name: "Sunset Resort",
@@ -317,9 +327,9 @@ app.post('/hotels/:hotelId', async(req,res)=>{
 
 // readHotelsByPhoneNum("+1299655890");
 
-const PORT = 3000;
 
-app.listen(PORT,()=>{
-    console.log("Application is up and running and listening at port", PORT);
+
+// app.listen(PORT,()=>{
+//     console.log("Application is up and running and listening at port", PORT);
     
-})
+// })
